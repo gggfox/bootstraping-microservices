@@ -17,6 +17,10 @@ jobs:
         run: echo Hello, world!
 
       - name: Run a script file
+        env:
+          VERSION: ${{secrets.VERSION}}
+          ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
+          ARM_CLIENT_SECRET: ${{secrets.ARM_CLIENT_SECRET}}
         run: sh ./scripts/deploy.sh
 
       - name: Run a multi-line script
