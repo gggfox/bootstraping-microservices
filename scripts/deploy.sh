@@ -7,8 +7,8 @@ set -u # or set -o nounset
 : "$VERSION"
 : "$ARM_CLIENT_ID"
 : "$ARM_CLIENT_SECRET"
-# : "$ARM_TENANT_ID"
-# : "$ARM_SUBSCRIPTION_ID"
+: "$ARM_TENANT_ID"
+: "$ARM_SUBSCRIPTION_ID"
 
 cd ./scripts
 export KUBERNETES_SERVICE_HOST="" # Workaround for https://github.com/terraform-providers/terraform-provider-kubernetes/issues/679
