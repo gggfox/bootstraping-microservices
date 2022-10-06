@@ -17,7 +17,7 @@ jobs:
         run: echo Hello, world!
 
       - name: Run a script file
-        run: sh ./scripts/job.sh
+        run: sh ./scripts/deploy.sh
 
       - name: Run a multi-line script
         run : |
