@@ -1,0 +1,33 @@
+name: Getting Started
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a on-line script
+        run: echo Hello, world!
+
+      - name: Run a script file
+        run: sh ./scripts/job.sh
+
+      - name: Run a multi-line script
+        run : |
+          echo 1. What is in this directory?
+          ls -a 
+          echo  2. Is node installed?
+          node -v
+          echo 3. Is python installed?
+          python -v
+          echo 4. docker version 
+          docker -v
+          echo 5. Is terraform installed?
+          terraform -v
