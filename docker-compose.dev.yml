@@ -1,0 +1,64 @@
+version: '3'
+services:
+  db:
+    image: postgres:14.1-alpine
+    container_name: db
+    ports:
+     - "4000:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db-data
+    restart: always
+    volumes: 
+     - db-data:/var/lib/postgresql/data/
+  
+  rabbit:
+    image: rabbitmq:3.8.1-management
+    container_name: rabbit
+    ports:
+     - "5672:5672" # rabbitmq standard port
+     - "15672:15672" # rabbitmq managment dashboard
+    expose:
+      - "5672"
+      - "15672"
+    restart: always
+    
+  history:
+    image: history
+    build:
+      context: ./history
+      dockerfile: Dockerfile.dev
+    container_name: history
+    volumes:
+     - /tmp/history/npm-cache:/root/.npm:z # Shares npm chache from host to the container
+     - ./history/src:/usr/src/app/src:z # Shares source code directly from host to the container, aka live reload
+    ports:
+     - "4001:80"
+    environment:
+      - PORT=80
+      - NODE_ENV=development
+      - RABBIT=amqp://guest:guest@rabbit:5672
+    restart: "no"
+  
+  video-streaming:
+    image: video-streaming
+    build:
+      context: ./video-streaming
+      dockerfile: Dockerfile.dev
+    container_name: video-streaming
+    volumes:
+     - /tmp/video-streaming/npm-cache:/root/.npm:z
+     - ./video-streaming/src:/usr/src/app/src:z
+    ports:
+     - "4002:80"
+    environment:
+      - PORT=80
+      - NODE_ENV=development
+      - RABBIT=amqp://guest:guest@rabbit:5672
+
+    restart: "no"
+
+volumes:
+  db-data:
+    driver: local

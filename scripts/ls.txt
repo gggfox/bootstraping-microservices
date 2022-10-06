@@ -1,0 +1,13 @@
+container-registry.tf
+database.tf
+deploy.sh
+kubernetes-cluster.tf
+ls.txt
+private-key.tf
+providers.tf
+rabbit.tf
+resource-group.tf
+terraform.tfstate
+terraform.tfstate.backup
+variables.tf
+video-streaming.tf

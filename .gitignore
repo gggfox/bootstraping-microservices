@@ -1,0 +1,9 @@
+node_modules/
+.terraform/
+aws-storage/
+
+secret.md
+.env
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info

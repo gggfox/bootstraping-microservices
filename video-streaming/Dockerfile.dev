@@ -1,0 +1,11 @@
+## Sets base image for our new image
+FROM node:14
+
+WORKDIR /usr/src/app
+COPY package*.json ./
+
+# installs arent backed into the image
+CMD npm config set cache-min 9999999 && \
+    npm install && \
+    npx wait-port rabbit:5672 && \
+    npm run start:dev

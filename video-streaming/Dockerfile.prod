@@ -1,0 +1,25 @@
+## Sets base image for our new image
+FROM node:10.15.2-alpine
+
+# Set directory in our image.
+# Other paths are relative to this
+WORKDIR /usr/src/app
+
+# Copies the Node.js package.json file into the image
+COPY package*.json ./
+
+# Installs only the production dependecies using npm
+RUN npm install --only=production
+
+# Coupy source code for our microservices
+COPY ./src ./src
+COPY ./.env ./.env
+#COPY ./prisma ./prisma
+
+# starts the microservice
+#RUN npx prisma generate
+# RUN npx prisma migrate dev --name init
+
+CMD npm start
+
+# build with docker build
