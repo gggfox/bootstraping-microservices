@@ -1,18 +1,18 @@
-import "reflect-metadata"
+// import "reflect-metadata"
 import express from 'express';
-import dotenv from 'dotenv';
-import http from 'http';
-import amqp from 'amqplib';
+// import dotenv from 'dotenv';
+// import http from 'http';
+// import amqp from 'amqplib';
 //import { PrismaClient } from '@prisma/client';
 
 
-dotenv.config();
+// dotenv.config();
 const app = express();
 
-const RABBIT = process.env.RABBIT;
-const PORT = process.env.PORT;
-const VIDEO_STORAGE_HOST = process.env.VIDEO_STORAGE_HOST;
-const VIDEO_STORAGE_PORT = process.env.VIDEO_STORAGE_PORT;
+// const RABBIT = process.env.RABBIT;
+const PORT = process.env.PORT || 80;
+// const VIDEO_STORAGE_HOST = process.env.VIDEO_STORAGE_HOST;
+// const VIDEO_STORAGE_PORT = process.env.VIDEO_STORAGE_PORT;
 //const prisma = new PrismaClient();
 
 app.use(express.json());
