@@ -16,7 +16,7 @@ resource "null_resource" "docker_build" {
     }
 
     provisioner "local-exec" {
-        command = "docker buildx build --platform=linux/amd64 -t ${local.image_tag} --file ../${local.service_name}/Dockerfile.prod ../${local.service_name}"
+        command = "docker build -t ${local.image_tag} --file ../${local.service_name}/Dockerfile.prod ../${local.service_name}"
     }
 }
 
