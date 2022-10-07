@@ -13,7 +13,7 @@ RUN npm install --only=production
 
 # Coupy source code for our microservices
 COPY ./src ./src
-COPY ./.env ./.env
+#COPY ./.env ./.env
 #COPY ./prisma ./prisma
 
 # starts the microservice
